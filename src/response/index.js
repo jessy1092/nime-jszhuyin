@@ -41,6 +41,8 @@ function respOnKeyDown(request, state) {
 
   if (state['action'] === 'UPDATE_CANDIDATE') {
     response['candidateCursor'] = state['candidateCursor'];
+    response['candidateList'] = state['candidateList'];
+    response['showCandidates']    = state['showCandidates'];
     return response;
   }
 

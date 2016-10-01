@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^2.2.0",
-    "jszhuyin": "^1.1.1"
+    "jszhuyin": "^1.1.1",
+    "sync-request": "^3.0.1"
   },
   "engines": {
     "node": ">=6"

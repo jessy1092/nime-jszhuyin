@@ -2,6 +2,25 @@
 
 let debug    = require('debug')('nime:zhuyin:composition');
 let KEYCODE  = require('nime/lib/keyCodes');
+let request  = require('sync-request');
+
+function requestMatch(pattern) {
+  console.log(pattern);
+
+  let res = request(
+    'GET', encodeURI(`http://140.109.16.144/正規化翻譯?查詢語句=${pattern}&查詢腔口=閩南語`), {
+      'headers': {
+        'Content-Type': 'application/json'
+      }
+  });
+
+  console.log(res);
+  let result = res.getBody().toString();
+
+  console.log(JSON.parse(result));
+
+  return JSON.parse(res.getBody().toString());
+}
 
 function candidateMode(request, preState) {
 
@@ -33,6 +52,16 @@ function candidateMode(request, preState) {
   if (keyCode === KEYCODE.VK_UP) {
     if (candidateCursor === 0) {
 
+      candidateList = candidateList.map(pattern => requestMatch(pattern)['綜合標音'][0]['漢字']);
+
+      // let res = requestMatch(candidateList[0]);
+
+      console.log(candidateList);
+      return Object.assign({}, preState, {
+        action: 'UPDATE_CANDIDATE',
+        candidateList,
+        candidateCursor
+      });
     } else {
       candidateCursor = candidateCursor < 3 ? 0 : candidateCursor - 3;
       return Object.assign({}, preState, {
