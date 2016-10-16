@@ -1,13 +1,10 @@
 'use strict';
 
 let nime = require('nime');
-let fs   = require('fs');
 let path = require('path');
 
 let service = require('./index');
-
-let configFile = fs.readFileSync(path.join(process.cwd(), 'ime.json'), 'utf8');
-let config = JSON.parse(configFile);
+let config  = require('./ime.json');
 
 config['textService'] = service;
 

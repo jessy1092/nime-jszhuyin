@@ -1,8 +1,7 @@
 
 'use strict';
 
-let emojione = require('emojione');
-let debug    = require('debug')('nime:emojime');
+let debug = require('debug')('nime:zhuyin');
 
 let {
   reduceOnKeyDown,

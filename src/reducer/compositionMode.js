@@ -1,7 +1,6 @@
 'use strict';
 
-let emojione = require('emojione');
-let debug    = require('debug')('nime:emojime:composition');
+let debug    = require('debug')('nime:zhuyin:composition');
 let KEYCODE  = require('nime/lib/keyCodes');
 
 function compositionMode(request, preState) {
